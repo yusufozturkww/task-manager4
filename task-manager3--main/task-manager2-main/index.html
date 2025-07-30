@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akıllı Görev Takvimi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="calendar-header-nav">
+                <button id="prevMonthBtn"><i class="fas fa-chevron-left"></i> Önceki</button>
+                <h1 id="currentMonthYear"></h1>
+                <button id="nextMonthBtn">Sonraki <i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div id="calendarView" class="calendar-grid">
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h2>Bugünün Görevleri</h2>
+            <span id="todayDate"></span>
+            <ul id="todayTasksList">
+            </ul>
+            <button id="addTaskBtn"><i class="fas fa-plus-circle"></i> Yeni Görev Ekle</button>
+
+            <div class="statistics-area">
+                <h3>Genel İstatistikler</h3>
+                <p>Tamamlanan Görevler: <span id="completedTasksCount">0</span></p>
+                <p>Toplam Çalışılan Saat: <span id="totalWorkHours">0</span></p>
+                <p>En Yoğun Gün: <span id="busiestDay">Yok</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Görev Detayları</h2>
+            <form id="taskForm">
+                <input type="hidden" id="taskId"> <div class="form-group">
+                    <label for="taskName">Görev Adı <span class="required-star">*</span></label>
+                    <input type="text" id="taskName" required placeholder="Görevin adını girin">
+                </div>
+
+                <div class="form-group">
+                    <label for="taskDescription">Açıklama</label>
+                    <textarea id="taskDescription" placeholder="Görevle ilgili detaylar"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskDate">Tarih <span class="required-star">*</span></label>
+                        <input type="date" id="taskDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskStartTime">Başlangıç Saati <span class="required-star">*</span></label>
+                        <input type="time" id="taskStartTime" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskEndTime">Bitiş Saati <span class="required-star">*</span></label>
+                        <input type="time" id="taskEndTime" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskColor">Renk</label>
+                        <input type="color" id="taskColor" value="#e0f7fa">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskPriority">Öncelik</label>
+                        <select id="taskPriority">
+                            <option value="low">Düşük</option>
+                            <option value="medium">Orta</option>
+                            <option value="high">Yüksek</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskRepeat">Tekrarlama</label>
+                        <select id="taskRepeat">
+                            <option value="none">Yok</option>
+                            <option value="weekly">Haftalık</option>
+                            <option value="monthly">Aylık</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="smartSuggestion" class="suggestion-box">
+                    <p><i class="fas fa-lightbulb"></i> Öneri: Bu görevin geçmişte ortalama <span id="suggestedDuration">0</span> saat sürdüğünü görüyorum.</p>
+                </div>
+
+                <button type="submit" class="submit-button">Kaydet</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="trashCan" class="fas fa-trash-alt"></div>
+
+    <div id="notification-container"></div>
+
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/notification.js"></script>
+    <script type="module" src="js/taskManager.js"></script>
+    <script type="module" src="js/calendar.js"></script>
+    <script type="module" src="js/dragDrop.js"></script>
+    <script type="module" src="js/stats.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
